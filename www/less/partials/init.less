@@ -1,0 +1,44 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Cooperhewitt', sans-serif;
+  font-weight: 200;
+  font-size: 100%;
+  color: #444;
+}
+
+p {
+  line-height: 1.424;
+}
+
+a {
+  text-decoration: none;
+  color:@light-color;
+  background: transparent;
+}
+
+a:active {
+  color: darken(@light-color, 10%);
+  outline: 0;
+}
+a:hover {
+  color: darken(@light-color, 10%);
+  outline: 0;
+}
+a:focus {
+  outline: 0;
+}
+
+button {
+  cursor: pointer;
+}

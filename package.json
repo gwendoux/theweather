@@ -1,0 +1,70 @@
+{
+  "name": "theweather",
+  "version": "1.0.0",
+  "description": "A demo weather app",
+  "main": "www/app.js",
+  "scripts": {
+    "start": "node dev/server.js",
+    "build:js": "browserify www/js/app.js | uglifyjs --compress - > www/js/theweather.min.js",
+    "build:js:watch": "watchify www/js/app.js -o www/js/theweather.min.js -v",
+    "prebuild:css": "npm run clean:css",
+    "build:css": "mkdirp www/css && lessc www/less/main.less | postcss -u autoprefixer -u pixrem -c postcss.json | cleancss > www/css/theweather.min.css",
+    "build:css:watch": "watch 'npm run build:css' www/less/",
+    "build": "npm run build:css && npm run build:js",
+    "build:watch": "parallelshell 'npm run build:css:watch' 'npm run build:js:watch'",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "clean:js": "rimraf www/js/*.min.js",
+    "clean:css": "rimraf www/css/**",
+    "clean:dist": "rimraf dist",
+    "clean": "parallelshell 'npm run clean:css' 'npm run clean:js'",
+    "prepackage": "npm run clean:dist",
+    "package": "mkdir dist && mkdir dist/js && cp -R www/css dist/ && cp -R www/img dist/ && cp -R www/font dist/ && cp www/js/theweather.min.js dist/js/theweather.min.js && cp www/index.html dist/index.html && cp www/favicon.ico dist/favicon.ico",
+    "deploy:prod": "rsync --progress --archive --delete dist/ root@gwendoux:/usr/share/nginx/theweather/"
+  },
+  "keywords": [
+    "app",
+    "html",
+    "javascript",
+    "weather"
+  ],
+  "author": "gwendoux",
+  "license": "ISC",
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser": {
+    "autocomplete": "./www/js/vendor/jquery.auto-complete.js"
+  },
+  "browserify-shim": {
+    "autocomplete": "autocomplete"
+  },
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "moment": "^2.10.6"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.1.1",
+    "browserify": "^12.0.1",
+    "browserify-shim": "^3.8.11",
+    "clean-css": "^3.4.8",
+    "eslint": "^1.10.2",
+    "express": "^4.13.3",
+    "less": "^2.5.3",
+    "loglevel": "^1.4.0",
+    "mkdirp": "^0.5.1",
+    "mocha": "^2.3.4",
+    "morgan": "^1.6.1",
+    "must": "^0.13.1",
+    "parallelshell": "^2.0.0",
+    "path": "^0.12.7",
+    "pixrem": "^3.0.0",
+    "postcss-cli": "^2.3.2",
+    "rimraf": "^2.4.4",
+    "uglify-js": "^2.6.1",
+    "watch": "^0.16.0",
+    "watchify": "^3.6.1"
+  }
+}
