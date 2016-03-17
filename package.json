@@ -20,7 +20,7 @@
     "clean": "parallelshell 'npm run clean:css' 'npm run clean:js'",
     "prepackage": "npm run clean:dist",
     "package": "mkdir dist && mkdir dist/js && cp -R www/css dist/ && cp -R www/img dist/ && cp -R www/font dist/ && cp www/js/theweather.min.js dist/js/theweather.min.js && cp www/index.html dist/index.html && cp www/favicon.ico dist/favicon.ico",
-    "deploy:prod": "rsync --progress --archive --delete dist/ root@gwendoux:/usr/share/nginx/theweather/"
+    "deploy:prod": "rsync -avzP --update --delete-before dist/ gwendoux:/usr/share/nginx/theweather/"
   },
   "keywords": [
     "app",
