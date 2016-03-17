@@ -8,15 +8,15 @@ function loadCity(city) {
 
 function widgetCity(res) {
     var widget_layout = [];
-    widget_layout.push('<div id="' + res.id + '" class="weather-city-list">');
-    widget_layout.push('<h2 class="city-name">' + res.name + ', <small>' + res.sys.country + '</small></h2>');
+    widget_layout.push('<div id="' + res.city.id + '" class="weather-city-list">');
+    widget_layout.push('<h2 class="city-name">' + res.city.name + ', <small>' + res.city.country + '</small></h2>');
     widget_layout.push('<div class="weather-status">');
-    widget_layout.push('<i class="big wi wi-owm-' + res.weather[0].id + '"></i>');
-    widget_layout.push('<h3 class="weather-description">' + res.weather[0].description + '</h3>');
+    widget_layout.push('<i class="big wi wi-owm-' + res.list[0].weather[0].id + '"></i>');
+    widget_layout.push('<h3 class="weather-description">' + res.list[0].weather[0].description + '</h3>');
     widget_layout.push('</div>');
     widget_layout.push('<div class="weather-info">');
-    widget_layout.push('<p class="temperature"><i class="wi wi-thermometer"></i> ' + Math.round(res.main.temp) + '<small> °C</small></p>');
-    widget_layout.push('<p class="humidity"><i class="wi wi-humidity"></small> ' + res.main.humidity + '<small> %</small></p>');
+    widget_layout.push('<p class="temperature"><i class="wi wi-thermometer"></i> ' + Math.round(res.list[0].main.temp) + '<small> °C</small></p>');
+    widget_layout.push('<p class="humidity"><i class="wi wi-humidity"></small> ' + res.list[0].main.humidity + '<small> %</small></p>');
     widget_layout.push('</div>');
     widget_layout.push('</div>');
 
@@ -26,8 +26,8 @@ function widgetCity(res) {
 function cityList(res) {
     var list_layout = [];
     list_layout.push('<li class="city-list-item">');
-    list_layout.push('<p>' + res.name + ', <small>' + res.sys.country + '</small></p>');
-    list_layout.push('<button data-city-id="' + res.id + '" class="btn-delete-city">&#9587;</button>');
+    list_layout.push('<p>' + res.city.name + ', <small>' + res.city.country + '</small></p>');
+    list_layout.push('<button data-city-id="' + res.city.id + '" class="btn-delete-city">&#9587;</button>');
     list_layout.push('</li>');
 
     return list_layout.join('');
