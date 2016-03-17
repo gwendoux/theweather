@@ -11,13 +11,16 @@ Install
 
     $ cd theweather
 
-3. install depedndencies
+3. install dependencies
 
     $ npm install
 
-4. build the application
+4. copy config.js.default to config.js and add API keypress
+
+5. build the application
 
     $ npm run build
+
 
 if you want to serve simply the app without any config run
 
